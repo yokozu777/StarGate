@@ -1,0 +1,17 @@
+{
+  "name": "ansible-variables-configurator-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for Ansible Variables Configurator",
+  "scripts": {
+    "serve": "python3 -m http.server 8080",
+    "serve:node": "npx http-server -p 8080 -c-1 --cors",
+    "dev": "npx http-server -p 8080 -c-1 --cors -o"
+  },
+  "keywords": [
+    "ansible",
+    "frontend",
+    "static"
+  ],
+  "author": "",
+  "license": "ISC"
+}

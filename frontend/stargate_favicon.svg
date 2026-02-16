@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="beam" x1="50%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" style="stop-color:#7dd3fc"/>
+      <stop offset="30%" style="stop-color:#38bdf8"/>
+      <stop offset="70%" style="stop-color:#0ea5e9"/>
+      <stop offset="100%" style="stop-color:#0284c7"/>
+    </linearGradient>
+    <linearGradient id="beamGlow" x1="50%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" style="stop-color:#e0f2fe"/>
+      <stop offset="50%" style="stop-color:#7dd3fc"/>
+      <stop offset="100%" style="stop-color:#0ea5e9"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#64748b"/>
+      <stop offset="50%" style="stop-color:#94a3b8"/>
+      <stop offset="100%" style="stop-color:#475569"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="0.8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Dark space background -->
+  <rect width="32" height="32" rx="6" fill="#0f172a"/>
+  <!-- Central light beam (conical, upward) -->
+  <path d="M16 32 L12 18 L16 2 L20 18 Z" fill="url(#beam)" filter="url(#glow)"/>
+  <path d="M16 30 L13 18 L16 4 L19 18 Z" fill="url(#beamGlow)" opacity="0.9"/>
+  <!-- Metallic ring at base -->
+  <circle cx="16" cy="20" r="10" fill="none" stroke="url(#ring)" stroke-width="2"/>
+  <circle cx="16" cy="20" r="10" fill="none" stroke="#38bdf8" stroke-width="0.8" opacity="0.6"/>
+  <!-- Ring segments (metallic panels) -->
+  <path d="M16 10 L16 30 M6 20 L26 20" stroke="#475569" stroke-width="0.6" opacity="0.6"/>
+  <path d="M10.5 12.5 L21.5 27.5 M21.5 12.5 L10.5 27.5" stroke="#475569" stroke-width="0.5" opacity="0.5"/>
+  <!-- Sparkles (4-pointed stars) -->
+  <circle cx="10" cy="14" r="0.8" fill="#e0f2fe"/>
+  <circle cx="22" cy="14" r="0.8" fill="#e0f2fe"/>
+  <circle cx="16" cy="6" r="1" fill="#fff"/>
+  <circle cx="8" cy="22" r="0.5" fill="#bae6fd"/>
+  <circle cx="24" cy="22" r="0.5" fill="#bae6fd"/>
+</svg>

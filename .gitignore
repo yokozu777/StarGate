@@ -1,0 +1,21 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+.token
+*.egg-info/
+.eggs/
+dist/
+build/
+*.log
+.DS_Store
+private-key.pem
+data/
+docs/
+scripts/
+# Windows metadata
+*:Zone.Identifier
+*.Zone.Identifier
+.dockerignore
+.vscode

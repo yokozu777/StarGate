@@ -1,0 +1,45 @@
+# Docker Hub - images pulled from yokozu/stargate-*
+# Tag is substituted by docker_build.cmd
+# Usage: docker compose -f docker-compose.hub.yml up -d
+
+services:
+  backend:
+    image: yokozu/stargate-backend:release-1.0
+    container_name: stargate-backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - TZ=Europe/Berlin
+      - FLASK_ENV=production
+      - DATA_DIR=/app/data
+    restart: unless-stopped
+
+  frontend:
+    image: yokozu/stargate-frontend:release-1.0
+    container_name: stargate-frontend
+    ports:
+      - "8080:80"
+    environment:
+      - TZ=Europe/Berlin
+      - API_URL=http://localhost:8080
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  worker:
+    image: yokozu/stargate-worker:release-1.0
+    container_name: stargate-worker
+    network_mode: host
+    volumes:
+      - ./data:/app/data
+    environment:
+      - TZ=Europe/Berlin
+      - WORKER_SERVER_URL=http://127.0.0.1:5000
+      - DATA_DIR=/app/data
+      - WORKER_TOKEN_FILE=/app/data/worker.token
+    depends_on:
+      - backend
+    restart: unless-stopped
+
