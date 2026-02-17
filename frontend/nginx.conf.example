@@ -1,0 +1,48 @@
+# Пример конфигурации Nginx для фронтенда
+# Скопируйте в /etc/nginx/sites-available/ и создайте симлинк в sites-enabled
+
+server {
+    listen 8080;
+    server_name localhost;
+    
+    root /path/to/web/frontend;
+    index index.html;
+    
+    # Логирование
+    access_log /var/log/nginx/frontend-access.log;
+    error_log /var/log/nginx/frontend-error.log;
+    
+    # Основная локация
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+    
+    # Кэширование статических ресурсов
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+    
+    # Безопасность заголовков
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    
+    # CORS для API запросов (если нужно проксировать)
+    location /api/ {
+        proxy_pass http://localhost:5000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        
+        # CORS headers
+        add_header Access-Control-Allow-Origin * always;
+        add_header Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS" always;
+        add_header Access-Control-Allow-Headers "Content-Type, Authorization" always;
+        
+        if ($request_method = OPTIONS) {
+            return 204;
+        }
+    }
+}

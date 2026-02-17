@@ -1,0 +1,417 @@
+/**
+ * Server Logs: Component Styles
+ * Phase 2: Enhanced UI Components
+ */
+
+/* ============================================
+   FILTER CHIP (Enhanced)
+   ============================================ */
+
+.sl-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sl-space-2);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: var(--sl-text-xs);
+  font-weight: 500;
+  border: 1px solid var(--sl-border-default);
+  background: var(--sl-bg-elevated);
+  color: var(--sl-text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin-right: var(--sl-space-2);
+  user-select: none;
+}
+
+.sl-filter-chip:hover {
+  border-color: var(--sl-border-accent);
+  color: var(--sl-text-primary);
+  background: rgba(51, 65, 85, 0.1);
+}
+
+.sl-filter-chip.active {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: var(--sl-accent-blue);
+  color: var(--sl-accent-blue);
+}
+
+.sl-filter-chip.active:hover {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: var(--sl-accent-blue-hover);
+}
+
+.sl-filter-chip-count {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(100, 116, 139, 0.2);
+  color: var(--sl-text-tertiary);
+}
+
+.sl-filter-chip.active .sl-filter-chip-count {
+  background: rgba(59, 130, 246, 0.2);
+  color: var(--sl-accent-blue);
+}
+
+/* ============================================
+   LEVEL BADGE (Enhanced with correct colors)
+   ============================================ */
+
+.sl-level-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: var(--sl-text-xs);
+  font-weight: 500;
+  border: 1px solid;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sl-level-badge.sl-level-error {
+  color: #DC2626;  /* ERROR - красный, не кислотный */
+  border-color: #DC2626;
+}
+
+.sl-level-badge.sl-level-warning,
+.sl-level-badge.sl-level-warn {
+  color: #F59E0B;  /* WARN - amber */
+  border-color: #F59E0B;
+}
+
+.sl-level-badge.sl-level-info {
+  color: #3B82F6;  /* INFO - холодный синий */
+  border-color: #3B82F6;
+}
+
+.sl-level-badge.sl-level-debug {
+  color: #6B7280;  /* DEBUG - нейтральный серый */
+  border-color: #6B7280;
+}
+
+/* ============================================
+   SEARCH INPUT (Enhanced)
+   ============================================ */
+
+.sl-search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--sl-space-2);
+}
+
+.sl-search-input {
+  width: 100%;
+  padding: 8px 28px 8px 10px;
+  background: var(--sl-bg-input);
+  border: 1px solid var(--sl-border-muted);
+  border-radius: 8px;
+  font-size: var(--sl-text-sm);
+  font-family: var(--sl-font-logs);
+  color: var(--sl-text-primary);
+  transition: all 0.15s ease;
+}
+
+.sl-search-input:focus {
+  outline: none;
+  border-color: var(--sl-border-accent);
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.2);
+}
+
+.sl-search-icon {
+  position: absolute;
+  left: 10px;
+  color: var(--sl-text-tertiary);
+  font-size: var(--sl-text-xs);
+  pointer-events: none;
+}
+
+.sl-search-matches {
+  position: absolute;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  gap: var(--sl-space-1);
+  color: var(--sl-text-tertiary);
+  font-size: var(--sl-text-xs);
+  font-family: var(--sl-font-logs);
+}
+
+.sl-search-nav {
+  display: flex;
+  gap: 2px;
+}
+
+.sl-search-nav-btn {
+  padding: 4px 6px;
+  background: transparent;
+  border: 1px solid var(--sl-border-muted);
+  border-radius: 4px;
+  color: var(--sl-text-secondary);
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sl-search-nav-btn:hover:not(:disabled) {
+  border-color: var(--sl-border-accent);
+  color: var(--sl-accent-blue);
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.sl-search-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.sl-regex-toggle {
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: var(--sl-text-xs);
+  font-weight: 500;
+  border: 1px solid var(--sl-border-default);
+  background: var(--sl-bg-elevated);
+  color: var(--sl-text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: var(--sl-font-logs);
+}
+
+.sl-regex-toggle:hover {
+  border-color: var(--sl-border-accent);
+}
+
+.sl-regex-toggle.active {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: var(--sl-accent-blue);
+  color: var(--sl-accent-blue);
+}
+
+/* ============================================
+   ACTION BUTTON
+   ============================================ */
+
+.sl-action-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: var(--sl-text-xs);
+  font-weight: 500;
+  border: 1px solid;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sl-action-button.ghost {
+  background: transparent;
+  border-color: var(--sl-border-default);
+  color: var(--sl-text-secondary);
+}
+
+.sl-action-button.ghost:hover {
+  border-color: var(--sl-border-accent);
+  background: rgba(51, 65, 85, 0.1);
+}
+
+.sl-action-button.primary {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: var(--sl-accent-blue);
+  color: var(--sl-accent-blue);
+}
+
+.sl-action-button.primary:hover {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: var(--sl-accent-blue-hover);
+}
+
+.sl-action-button.danger {
+  background: rgba(220, 38, 38, 0.1);
+  border-color: #DC2626;
+  color: #DC2626;
+}
+
+.sl-action-button.danger:hover {
+  background: rgba(220, 38, 38, 0.15);
+}
+
+/* ============================================
+   STATUS PILL
+   ============================================ */
+
+.sl-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: var(--sl-text-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sl-status-pill.idle {
+  background: rgba(156, 163, 175, 0.15);
+  color: #9CA3AF;
+}
+
+.sl-status-pill.live {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60A5FA;
+}
+
+.sl-status-pill.error {
+  background: rgba(220, 38, 38, 0.15);
+  color: #F87171;
+}
+
+.sl-status-pill .status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.sl-status-pill.idle .status-dot {
+  background: #9CA3AF;
+}
+
+.sl-status-pill.live .status-dot {
+  background: #60A5FA;
+  animation: pulse 2s infinite;
+}
+
+.sl-status-pill.error .status-dot {
+  background: #F87171;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ============================================
+   TABLE SORTABLE HEADER
+   ============================================ */
+
+.sl-table-header-sortable {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  padding-right: 20px;
+}
+
+.sl-table-header-sortable:hover {
+  color: var(--sl-text-primary);
+}
+
+.sl-table-header-sortable::after {
+  content: '↕';
+  position: absolute;
+  right: 4px;
+  font-size: 10px;
+  opacity: 0.5;
+}
+
+.sl-table-header-sortable.asc::after {
+  content: '↑';
+  opacity: 1;
+  color: var(--sl-accent-blue);
+}
+
+.sl-table-header-sortable.desc::after {
+  content: '↓';
+  opacity: 1;
+  color: var(--sl-accent-blue);
+}
+
+/* ============================================
+   SEARCH HIGHLIGHT
+   ============================================ */
+
+.sl-search-highlight {
+  background: rgba(245, 158, 11, 0.3);
+  color: var(--sl-text-primary);
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+.sl-search-highlight-current {
+  background: rgba(59, 130, 246, 0.3);
+  color: var(--sl-text-primary);
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+/* ============================================
+   PHASE 4: TOAST NOTIFICATIONS
+   ============================================ */
+
+.sl-toast {
+  min-width: 200px;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   PHASE 4: KEYBOARD SHORTCUTS MODAL
+   ============================================ */
+
+kbd {
+  font-family: var(--sl-font-logs);
+  font-size: 11px;
+  color: var(--sl-text-primary);
+}
+
+/* ============================================
+   WORD WRAP FOR LOG MESSAGES
+   ============================================ */
+
+/* Перенос длинных сообщений в логах на новую строку */
+.sl-text-base.sl-font-mono,
+.sl-text-base.sl-text-primary.sl-font-mono,
+span.sl-text-base.sl-font-mono,
+span.sl-text-base.sl-text-primary.sl-font-mono,
+td.sl-text-base.sl-font-mono,
+td.sl-text-base.sl-text-primary.sl-font-mono {
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+  max-width: 100%;
+}
+
+/* Перенос для сообщений в таблице логов */
+table td.sl-text-base.sl-font-mono,
+table td.sl-text-base.sl-text-primary.sl-font-mono {
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+  max-width: 100%;
+}
+
+/* ============================================
+   PHASE 4: RESPONSIVE IMPROVEMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  .server-logs-header-left {
+    width: 100%;
+    margin-bottom: var(--sl-space-2);
+  }
+
+  .sl-filter-chip {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+
+  .sl-level-badge {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+}

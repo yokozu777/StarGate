@@ -1,0 +1,56 @@
+# Local build. For Docker Hub images use: docker-compose.hub.yml
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: stargate-backend
+    container_name: stargate-backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - TZ=Europe/Berlin
+      - FLASK_ENV=production
+      - DATA_DIR=/app/data
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    image: stargate-frontend
+    container_name: stargate-frontend
+    ports:
+      - "8080:80"
+    environment:
+      - TZ=Europe/Berlin
+      # API requests go to same host :8080, nginx proxies to backend:5000 (no CORS, token sent)
+      - API_URL=http://localhost:8080
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  worker:
+    build:
+      context: .
+      dockerfile: worker/Dockerfile
+    image: stargate-worker
+    container_name: stargate-worker
+    # Host network: so worker can reach inventory hosts (192.168.1.x) via SSH.
+    # Without this Check host returns "unreachable" from container.
+    network_mode: host
+    volumes:
+      - ./data:/app/data
+    environment:
+      - TZ=Europe/Berlin
+      # With network_mode: host backend is available at localhost:5000 (port exposed from backend).
+      - WORKER_SERVER_URL=http://127.0.0.1:5000
+      - DATA_DIR=/app/data
+      # Token: on first run worker self-registers (POST /api/worker/register)
+      # and saves token to /app/data/worker.token; on restart reads from there.
+      - WORKER_TOKEN_FILE=/app/data/worker.token
+    depends_on:
+      - backend
+    restart: unless-stopped
